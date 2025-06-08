@@ -30,9 +30,14 @@ movies = [
 ]
 
 # 创建数据库模型
-class User(db.Model):
-	id = db.Column(db.INteger, primary_key=True)
-	name = db.Column(db.String(20))
+class User(db.Model): # 表名将会是 user（自动生成，小写处理），注意模型类要声明继承即 db.Model；
+	id = db.Column(db.Integer, primary_key=True)  # 主键
+	name = db.Column(db.String(20))  # 名字
+	
+class Movie(db.Model):      # 表名将会是 movie
+	id = db.Column(db.Integer, primary_key=True) # 主键
+	title = db.Column(db.String(60))  # 电影标题
+	year = db.Column(db.String(4))  # 电影年份
 
 # 三、定义路由及视图函数
 @app.route('/')
@@ -40,6 +45,8 @@ class User(db.Model):
 @app.route('/index')
 def index():
     #return 'Welcome to My Watchlist!!!'
+    user = User.query.first()  # 读取用户记录;
+    movies = Movie.query.all() # 读取所有电影记录：
     return render_template('index.html', name=name, movies=movies)
 
 # 四、运行项目

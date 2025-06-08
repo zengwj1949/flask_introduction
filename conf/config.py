@@ -4,4 +4,4 @@ DEBUG = True
 
 # DB MySQL
 SQLALCHEMY_DATABASE_URI = "mysql+pymysql://test:0bee89b07@192.168.111.128:3306/watchlist?charset=utf8mb4"
-
+SQLALCHEMY_TRACK_MODIFICATIONS = "False"
